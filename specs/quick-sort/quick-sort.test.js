@@ -14,6 +14,25 @@
 
 function quickSort(nums) {
   // code goes here
+  // base case
+  if (nums.length < 2) return nums;
+  // pivot = last element in nums array
+  const pivot = nums.pop();
+  let lessThanPivotArray = [];
+  let greaterThanOrEqualToPivotArray = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] < pivot) {
+      lessThanPivotArray.push(nums[i]);
+    } else {
+       greaterThanOrEqualToPivotArray.push(nums[i]);
+    }
+  }
+
+  let sortedLessThan = quickSort(lessThanPivotArray);
+  let sortedGreaterThan = quickSort(greaterThanOrEqualToPivotArray);
+
+  return sortedLessThan.concat(pivot, ...sortedGreaterThan);
 }
 
 // unit tests

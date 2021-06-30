@@ -15,6 +15,21 @@
 
 function insertionSort(nums) {
   // code goes here
+  if (nums.length < 2) return nums;
+  // since arr[0] is already sorted
+  for (let i = 1; i < nums.length; i++) {
+    for (let j = i; j > 0; j--) {
+      if (nums[j] < nums[j-1]) {
+        let temp = nums[j];
+        nums[j] = nums[j-1];
+        nums[j-1] = temp;
+      } else {
+        break;
+      }
+    }
+  }
+
+  return nums;
 }
 
 // unit tests

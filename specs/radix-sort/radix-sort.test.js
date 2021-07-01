@@ -51,9 +51,15 @@ function radixSort(array) {
       buckets[getDigit(currentElement, i)].push(currentElement);
     }
 
-    array = array.concat(...buckets);
+    /*array = array.concat(...buckets);
     // need to empty the buckets at the end
-    buckets = buckets.map(ele => []);
+    buckets = buckets.map(ele => []);*/
+
+    for (let j = 0; j < 10; j++) {
+      while (buckets[j].length) {
+        array.push(buckets[j].shift());
+      }
+    }
 
   }
 
@@ -112,12 +118,12 @@ describe.skip("radix sort", function () {
       3001
     ]);
   });
-  /*it("should sort 99 random numbers correctly", () => {
+  it("should sort 99 random numbers correctly", () => {
     const fill = 99;
     const nums = new Array(fill)
       .fill()
       .map(() => Math.floor(Math.random() * 500000));
     const ans = radixSort(nums);
     expect(ans).toEqual(nums.sort());
-  });*/
+  });
 });

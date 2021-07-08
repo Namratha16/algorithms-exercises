@@ -19,6 +19,42 @@
 
 class ArrayList {
   // code goes here
+  constructor() {
+    this.data = {};
+    this.length = 0;
+  }
+
+  // reassign the key of value index to the element on the right
+  _collapseTo(index) {
+    for (let i = index; i < this.length - 1; i++) {
+      this.data[i] = this.data[i+1];
+    }
+    // delete the last key in data
+    delete this.data[this.length - 1];
+    this.length--;
+  }
+
+  push(value) {
+    this.data[this.length] = value;
+    this.length++;
+  }
+
+  pop() {
+    if (this.length < 1) return void 0;
+    let val = this.data[this.length - 1];
+    this._collapseTo(this.length - 1);
+    return val;
+  }
+
+  get(index) {
+    return this.data[index];
+  }
+
+  delete(index) {
+    let val = this.data[index];
+    this._collapseTo(index);
+    return val;
+  }
 }
 
 // unit tests
